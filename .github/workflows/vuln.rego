@@ -7,12 +7,16 @@ reasons[msg] {
     msg := sprintf("Denied CVE-2020-8164 (%s %s in %s)", [vuln.PkgName, vuln.InstalledVersion, src.Target])
 }
 
+urgentVulns := [
+    "CVE-2020-8164",
+    "CVE-2018-16476",
+]
+
 reasons[msg] {
     src := input.Results[_]
     vuln := src.Vulnerabilities[_]
-    not vuln.VulnerabilityID == "CVE-2020-8164"
-    vuln.Severity == "CRITICAL"
-    msg := sprintf("Denied CRITICAL (%s %s in %s)", [vuln.PkgName, vuln.InstalledVersion, src.Target])
+    vuln.VulnerabilityID == urgentVulns[_]
+    msg := sprintf("Denied Urgent %s (%s %s in %s)", [vuln.VulnerabilityID, vuln.PkgName, vuln.InstalledVersion, src.Target])
 }
 
 reasons[msg] {
