@@ -19,4 +19,4 @@ jobs:
           output: trivy-results.json
       - uses: docker://openpolicyagent/opa:0.34.2-rootless
         with:
-          args: "eval -f pretty -b .github/workflows -i trivy-results.json --fail-defined data.vuln"
+          args: "eval -f pretty -b .github/workflows -i trivy-results.json --fail-defined data.vuln.failed"
