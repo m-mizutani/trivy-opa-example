@@ -12,11 +12,12 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: Run Trivy vulnerability scanner in repo mode
-        uses: aquasecurity/trivy-action@master
+        uses: m-mizutani/trivy-action@master
         with:
           scan-type: fs
           format: json
           output: trivy-results.json
+          list-all-pkgs: true
       - uses: docker://openpolicyagent/opa:0.34.2-rootless
         with:
           args: "eval -f pretty -b .github/workflows -i trivy-results.json --fail-defined data.vuln.failed"
