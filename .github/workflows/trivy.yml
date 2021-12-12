@@ -19,7 +19,7 @@ jobs:
           output: trivy-results.json
           list-all-pkgs: true
       - name: inquiry to OPA server
-        uses: m-mizutani/opa-inquiry@master
+        uses: m-mizutani/opa-inquiry@main
         with:
           url: https://opa-server-h6tk4k5hyq-an.a.run.app
           input-file: trivy-results.json
